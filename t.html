@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>javascript</title>
+	<link rel="stylesheet" type="text/css" href="t.css">
+</head>
+<body>
+  <h1 id="WEL">welcome to my webpage</h1>
+  <h2><b>REGISTRATION FORM</b></h2>
+  <form id="FORM" action="a.php" method="post">
+  	<label >NAME:</label>
+  	<input type="text" name="name" placeholder="ENTER YOUR NAME">
+  	<br>
+  	<br>
+  	<label>EMAIL:</label>
+  	<input type="email" name="email" placeholder="ENTER YOUR EMAIL">
+  	<br>
+  	<br>
+  	<label>ROLL:</label>
+  	<input type="number" name="roll"  min="1" max="5" id="roll">
+  	<br>
+  	<br>
+  	<label>GENDER:</label>
+  	<select name="gender">
+  		<option value="male">MALE</option>
+  		<option value="female">FEMALE</option>
+  		<option value="other">OTHER</option>
+  	</select>
+  	<input type="submit" >
+  	<input type="reset" value="clear">
+  </form>
+  <script type="text/javascript">
+  	document.getElementById('WEL').innerHTML=document.getElementById('WEL').innerHTML.toUpperCase();
+  	document.getElementById('FORM').onsubmit=function(event) {
+  		let c=document.getElementById("roll").value;
+  		if(c==2){
+  			event.preventDefault();
+  			alert('!!!!!!!no student with roll number 2!!!!!!!');
+  		}
+  	}
+  </script>
+</body>
+</html>
