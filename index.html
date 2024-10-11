@@ -1,46 +1,130 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>javascript</title>
-	<link rel="stylesheet" type="text/css" href="t.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    <style>
+        /* CSS for styling the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <h1 id="WEL">welcome to my webpage</h1>
-  <h2><b>REGISTRATION FORM</b></h2>
-  <form id="FORM" action="a.php" method="post">
-  	<label >NAME:</label>
-  	<input type="text" name="name" placeholder="ENTER YOUR NAME">
-  	<br>
-  	<br>
-  	<label>EMAIL:</label>
-  	<input type="email" name="email" placeholder="ENTER YOUR EMAIL">
-  	<br>
-  	<br>
-  	<label>ROLL:</label>
-  	<input type="number" name="roll"  min="1" max="5" id="roll">
-  	<br>
-  	<br>
-  	<label>GENDER:</label>
-  	<select name="gender">
-  		<option value="male">MALE</option>
-  		<option value="female">FEMALE</option>
-  		<option value="other">OTHER</option>
-  	</select>
-  	<input type="submit" >
-  	<input type="reset" value="clear">
-  </form>
-  <script type="text/javascript">
-  	document.getElementById('WEL').innerHTML=document.getElementById('WEL').innerHTML.toUpperCase();
-  	document.getElementById('FORM').onsubmit=function(event) {
-  		let c=document.getElementById("roll").value;
-  		if(c==2){
-  			event.preventDefault();
-  			alert('!!!!!!!no student with roll number 2!!!!!!!');
-  		}
-  	}
-  </script>
+
+    <div class="form-container">
+        <h2>Register Here</h2>
+        <form id="myForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <button type="submit">Submit</button>
+        </form>
+        <p id="errorMessage" class="error"></p>
+    </div>
+
+    <script>
+        // JavaScript for form validation
+        function validateForm() {
+            // Get form inputs
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var errorMessage = document.getElementById("errorMessage");
+
+            // Clear previous error message
+            errorMessage.textContent = "";
+
+            // Basic validation
+            if (name === "") {
+                errorMessage.textContent = "Name cannot be empty";
+                return false;
+            }
+            if (email === "") {
+                errorMessage.textContent = "Email cannot be empty";
+                return false;
+            }
+            if (!validateEmail(email)) {
+                errorMessage.textContent = "Invalid email format";
+                return false;
+            }
+            if (password === "") {
+                errorMessage.textContent = "Password cannot be empty";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true; // Allows form submission
+        }
+
+        // Email format validation function
+        function validateEmail(email) {
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return emailPattern.test(email);
+        }
+    </script>
+
 </body>
 </html>
